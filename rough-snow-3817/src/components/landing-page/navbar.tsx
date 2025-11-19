@@ -4,6 +4,18 @@ import { useState, useEffect } from 'react'
 import { Menu, X, Github } from 'lucide-react'
 import logo from '@/react-app/assets/logo.png'
 
+export function smoothScrollTo(id: string) {
+  const target = document.querySelector(id)
+  if (!target) return
+
+  const top = target.getBoundingClientRect().top + window.scrollY - 80
+
+  window.scrollTo({
+    top,
+    behavior: 'smooth'
+  })
+}
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
@@ -16,6 +28,12 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Reusable scroll handler
+  const handleScrollClick = (id: string) => {
+    smoothScrollTo(id)
+    setIsOpen(false) // close mobile menu
+  }
+
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
       isScrolled 
@@ -24,16 +42,18 @@ export default function Navbar() {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
+          
+          {/* Logo */}
           <div className="flex items-center gap-2">
-                <img src={logo} alt="TechFriend" className="h-10 w-auto" />
+            <img src={logo} alt="TechFriend" className="h-10 w-auto" />
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-sm hover:text-primary transition">Features</a>
-            <a href="#tools" className="text-sm hover:text-primary transition">Tools</a>
-            <a href="#faq" className="text-sm hover:text-primary transition">FAQ</a>
-            <a href="#contact" className="text-sm hover:text-primary transition">Contact</a>
+            <button onClick={() => handleScrollClick('#features')} className="text-sm hover:text-primary transition">Features</button>
+            <button onClick={() => handleScrollClick('#tools')} className="text-sm hover:text-primary transition">Tools</button>
+            <button onClick={() => handleScrollClick('#faq')} className="text-sm hover:text-primary transition">FAQ</button>
+            <button onClick={() => handleScrollClick('#contact')} className="text-sm hover:text-primary transition">Contact</button>
           </div>
 
           <div className="flex items-center gap-3">
@@ -57,10 +77,10 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden pb-4 space-y-2 animate-slide-up">
-            <a href="#features" className="block px-4 py-2 rounded-lg hover:bg-muted transition">Features</a>
-            <a href="#tools" className="block px-4 py-2 rounded-lg hover:bg-muted transition">Tools</a>
-            <a href="#faq" className="block px-4 py-2 rounded-lg hover:bg-muted transition">FAQ</a>
-            <a href="#contact" className="block px-4 py-2 rounded-lg hover:bg-muted transition">Contact</a>
+            <button onClick={() => handleScrollClick('#features')} className="block w-full text-left px-4 py-2 rounded-lg hover:bg-muted transition">Features</button>
+            <button onClick={() => handleScrollClick('#tools')} className="block w-full text-left px-4 py-2 rounded-lg hover:bg-muted transition">Tools</button>
+            <button onClick={() => handleScrollClick('#faq')} className="block w-full text-left px-4 py-2 rounded-lg hover:bg-muted transition">FAQ</button>
+            <button onClick={() => handleScrollClick('#contact')} className="block w-full text-left px-4 py-2 rounded-lg hover:bg-muted transition">Contact</button>
           </div>
         )}
       </div>
