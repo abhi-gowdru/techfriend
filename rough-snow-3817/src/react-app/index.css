@@ -1,47 +1,7 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-@custom-variant dark (&:is(.dark *));
-
 :root {
-  /* Updated color scheme for modern productivity tools aesthetic */
-  --background: oklch(0.98 0.001 250);
-  --foreground: oklch(0.12 0.01 250);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.12 0.01 250);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.12 0.01 250);
-  --primary: oklch(0.35 0.15 270);
-  --primary-foreground: oklch(0.98 0.001 250);
-  --secondary: oklch(0.55 0.12 280);
-  --secondary-foreground: oklch(1 0 0);
-  --muted: oklch(0.95 0.002 250);
-  --muted-foreground: oklch(0.55 0.02 250);
-  --accent: oklch(0.6 0.18 50);
-  --accent-foreground: oklch(0.12 0.01 250);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.005 250);
-  --input: oklch(0.95 0.002 250);
-  --ring: oklch(0.35 0.15 270);
-  --chart-1: oklch(0.35 0.15 270);
-  --chart-2: oklch(0.6 0.18 50);
-  --chart-3: oklch(0.55 0.12 280);
-  --chart-4: oklch(0.45 0.14 40);
-  --chart-5: oklch(0.4 0.13 260);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.35 0.15 270);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.6 0.18 50);
-  --sidebar-accent-foreground: oklch(0.145 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.35 0.15 270);
-}
-
-.dark {
-  /* Dark mode colors with vibrant accents */
   --background: oklch(0.11 0.01 260);
   --foreground: oklch(0.95 0.005 250);
   --card: oklch(0.16 0.01 260);
@@ -124,4 +84,16 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.stat-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.stat-card:hover {
+  transform: perspective(600px) rotateX(10deg) rotateY(10deg) scale(1.06);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }

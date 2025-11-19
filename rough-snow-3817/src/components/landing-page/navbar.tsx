@@ -1,15 +1,10 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Menu, X, Sun, Moon, Github } from 'lucide-react'
+import { Menu, X, Github } from 'lucide-react'
 import logo from '@/react-app/assets/logo.png'
 
-interface NavbarProps {
-  isDark: boolean
-  onThemeToggle: () => void
-}
-
-export default function Navbar({ isDark, onThemeToggle }: NavbarProps) {
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
@@ -42,13 +37,6 @@ export default function Navbar({ isDark, onThemeToggle }: NavbarProps) {
           </div>
 
           <div className="flex items-center gap-3">
-            <button
-              onClick={onThemeToggle}
-              className="p-2 rounded-lg hover:bg-muted transition"
-              aria-label="Toggle theme"
-            >
-              {isDark ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
             <a
               href="https://github.com"
               target="_blank"

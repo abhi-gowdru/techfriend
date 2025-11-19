@@ -1,73 +1,132 @@
 'use client'
 
-import { Github, Twitter, Mail, Heart } from 'lucide-react'
+import { Github, Heart } from 'lucide-react'
 import logo from '@/react-app/assets/logo.png'
+
+export function smoothScrollTo(id: string) {
+  const target = document.querySelector(id)
+  if (!target) return
+
+  const top = target.getBoundingClientRect().top + window.scrollY - 80
+  window.scrollTo({
+    top,
+    behavior: 'smooth'
+  })
+}
 
 export default function Footer() {
   return (
-    <footer className="relative bg-card border-t border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-                <img src={logo} alt="TechFriend" />
-            </div>
-            <p className="text-sm text-muted-foreground">
-              Open source productivity tools for everyone. Free, fast, and privacy-first.
-            </p>
+    <footer className="
+      relative py-12 
+      bg-black/40 
+      backdrop-blur-xl 
+      shadow-[0_0_75px_rgba(0,255,255,0.15)]
+    ">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Top Section */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-10">
+          
+          {/* Logo */}
+          <div className="flex items-center gap-3">
+            <img
+              src={logo}
+              alt="TechFriend"
+              className="w-auto h-10"
+            />
           </div>
 
-          {/* Links */}
-          <div>
-            <h3 className="font-semibold mb-4">Product</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#tools" className="hover:text-primary transition">Tools</a></li>
-              <li><a href="#features" className="hover:text-primary transition">Features</a></li>
-              <li><a href="#faq" className="hover:text-primary transition">FAQ</a></li>
-            </ul>
-          </div>
+          {/* Neon Nav */}
+          <nav className="flex flex-wrap justify-center gap-6 text-sm">
+            
+            {/* Neon Button Link */}
+            <button
+              onClick={() => smoothScrollTo('#tools')}
+              className="
+                text-gray-300/80 
+                hover:text-gray-400 
+                transition 
+                relative
+              "
+            >
+              Tools
+              <span className="absolute left-0 -bottom-1 w-full h-[2px] scale-x-0 bg-cyan-400 transition-transform duration-300 origin-left hover:scale-x-100 shadow-[0_0_8px_#22d3ee]"></span>
+            </button>
 
-          <div>
-            <h3 className="font-semibold mb-4">Community</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition">GitHub</a></li>
-              <li><a href="#" className="hover:text-primary transition">Discord</a></li>
-              <li><a href="#" className="hover:text-primary transition">Twitter</a></li>
-              <li><a href="#" className="hover:text-primary transition">Blog</a></li>
-            </ul>
-          </div>
+            <button
+              onClick={() => smoothScrollTo('#features')}
+              className="
+                text-gray-300/80
+                hover:text-gray-400
+                transition
+                relative
+              "
+            >
+              Features
+              <span className="absolute left-0 -bottom-1 w-full h-[2px] scale-x-0 bg-cyan-400 transition-transform duration-300 origin-left hover:scale-x-100 shadow-[0_0_8px_#22d3ee]"></span>
+            </button>
 
-          <div>
-            <h3 className="font-semibold mb-4">Legal</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition">Privacy</a></li>
-              <li><a href="#" className="hover:text-primary transition">Terms</a></li>
-              <li><a href="#" className="hover:text-primary transition">License</a></li>
-              <li><a href="#" className="hover:text-primary transition">Contact</a></li>
-            </ul>
-          </div>
+            <button
+              onClick={() => smoothScrollTo('#faq')}
+              className="
+                text-gray-300/80 
+                hover:text-gray-400 
+                transition 
+                relative
+              "
+            >
+              FAQ
+              <span className="absolute left-0 -bottom-1 w-full h-[2px] scale-x-0 bg-cyan-400 transition-transform duration-300 origin-left hover:scale-x-100 shadow-[0_0_8px_#22d3ee]"></span>
+            </button>
+
+            <a
+              href="https://github.com/abhi-gowdru/techfriend"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                text-gray-300/80 
+                hover:text-gray-400 
+                transition 
+                relative
+              "
+            >
+              GitHub
+              <span className="absolute left-0 -bottom-1 w-full h-[2px] scale-x-0 bg-cyan-400 transition-transform duration-300 origin-left hover:scale-x-100 shadow-[0_0_8px_#22d3ee]"></span>
+            </a>
+
+          </nav>
         </div>
 
-        <div className="border-t border-border pt-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <span>Made with</span>
-              <Heart size={16} className="fill-accent text-accent" />
-              <span>by the TechFriend Community</span>
-            </div>
+        {/* Bottom Section */}
+        <div className="
+          border-t border-cyan-500/20 
+          pt-6 flex flex-col md:flex-row 
+          items-center justify-between 
+          text-sm text-gray-300/70 
+          gap-4
+        ">
 
-            <div className="flex items-center gap-4">
-              <a href="https://github.com/abhi-gowdru/techfriend" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg hover:bg-muted transition">
-                <Github size={20} />
-              </a>
-            </div>
-          </div>
+          <p className="flex items-center gap-1 text-center">
+            Made with 
+            <Heart size={14} className="text-pink-500 drop-shadow-[0_0_8px_rgba(255,0,150,0.7)]" /> 
+            by the TechFriend Community
+          </p>
 
-          <div className="text-center mt-8 text-xs text-muted-foreground">
-            <p>© {new Date().getFullYear()} TechFriend. All rights reserved. Made with ❤️ for the open source community.</p>
-          </div>
+          <a
+            href="https://github.com/abhi-gowdru/techfriend"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+              p-2 rounded-lg 
+            "
+          >
+            <Github size={18} className="text-gray-300 hover:text-gray-400" />
+          </a>
         </div>
+
+        <p className="text-center mt-6 text-xs text-gray-300/50">
+          © {new Date().getFullYear()} TechFriend. All rights reserved.
+        </p>
       </div>
     </footer>
   )
